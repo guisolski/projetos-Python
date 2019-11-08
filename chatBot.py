@@ -1,4 +1,6 @@
 import math
+import functools
+
 def array_to_palavras(text):
     a = []
     for i in text:
@@ -45,7 +47,7 @@ def index_maior_valor(t):
         if t[i] > m:
             index = i
             m = t[i]
-    return index
+    return index if t[index] != 0 else None
 
 def maior_simi(matriz_idf):
     t = []
@@ -53,16 +55,49 @@ def maior_simi(matriz_idf):
         t.append(similaridade(matriz_idf,i))
     return index_maior_valor(t)
 
+def arrays_to_unicArray(*args):
+  return [j for i in args for j in i]
+
+def resposta(*args):
+    for i in range(len(args)):
+        print(args)
+        #tamanho = functools.reduce(lambda a,b : len(a)+len(b),args[0:i+1])
+        #print(tamanho)
+        #if index < tamanho: return i
+    return None
 
 
 #resultados finais
-reposta = ['Parabéns você se encaixa no perfil de morados esse são os imoveis q recomendamos para você realizar a comprar: \nCasa de Madeira - Um quarto, Duas cozinhas']
+reposta = ["Parabéns você se encaixa no perfil de morados esse são os imoveis q recomendamos para você realizar a comprar: \nCasa de Madeira - Um quarto,",
+           "Parabéns você se encaixa no perfil de alugador esse são os imoveis q recomendamos para você realizar a comprar: \nCasa de Madeira - Um quarto,",
+           "Parabéns você se encaixa no perfil de investidor esse são os imoveis q recomendamos para você realizar a comprar: \nCasa de Madeira - Um quarto,",
+           "Parabéns você se encaixa no perfil de um fundo imobiliario esse são os imoveis q recomendamos para você realizar a comprar: \nCasa de Madeira - Um quarto,"]
 #cria casos de validação
-texto = ["Shipment of gold damaged in a fire", "Delivery of silver arrived in a silver truck","Shipment of gold arrived in a truck"]
-corpus = sorted(array_to_palavras(texto))
+morar = ["Eu gostaria de morar na casa não não", "Eu gostaria de morar na casa não sim", "Morar não não","Morar não sim" ]
+alugar = ["Eu gostaria de alugar a casa não não","Alugar não não","Alugar não sim"]
+investir = ["Eu gostaria de investir no imovel sim não","Eu gostaria de investir no imovel não não"]
+fundo_imobi = ["Eu gostaria de acionar ao meu portifolio de imoveis sim sim","Eu gostaria de acionar ao meu portifolio de imoveis sim não","Eu gostaria de acionar ao meu portifolio de imoveis tanto faz sim"]
+
+validacoes = arrays_to_unicArray(morar,alugar,investir,fundo_imobi)
+corpus = array_to_palavras(validacoes)
+#perguntas
+perguntas = ["Qual o seu intuito com compra/aquicição do imovel?",
+            "A compra de um imovel com a possibilidade de ainda ter um morador dentro lhe interessa?",
+             "A compra de um imovel com a possibilidade de alguma pendência juridica lhe interessa?"]
 #aqui vai ser onde montamos os slots e depois o q
-q = "gold silver truck"
-texto.append(q)
+slot = ["Investir imovel","não","não"]
+'''
+for i in perguntas:
+    print(i)
+    print("Resposta: ",end=" ")
+    slot.append(str(input()))
+'''
+
+q = array_to_palavras(slot)
+validacoes.append(q)
 #parte q calcula qual resposta ele chegará
-matriz = matriz_idf(texto,corpus)
-print(maior_simi(matriz))
+matriz = matriz_idf(validacoes,corpus)
+index = maior_simi(matriz)
+print(index)
+r_index = resposta(index, morar,alugar,investir,fundo_imobi)
+#print(reposta[r_index])
