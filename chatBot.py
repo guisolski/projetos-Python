@@ -59,11 +59,10 @@ def arrays_to_unicArray(*args):
   return [j for i in args for j in i]
 
 def resposta(*args):
-    for i in range(len(args)):
-        print(args)
-        #tamanho = functools.reduce(lambda a,b : len(a)+len(b),args[0:i+1])
-        #print(tamanho)
-        #if index < tamanho: return i
+    tamanho = 0
+    for i in range(1,len(args)):
+        tamanho += len(args[i])
+        if args[0] < tamanho: return i
     return None
 
 
@@ -98,6 +97,6 @@ validacoes.append(q)
 #parte q calcula qual resposta ele chegará
 matriz = matriz_idf(validacoes,corpus)
 index = maior_simi(matriz)
-print(index)
+
 r_index = resposta(index, morar,alugar,investir,fundo_imobi)
-#print(reposta[r_index])
+print(reposta[r_index])
