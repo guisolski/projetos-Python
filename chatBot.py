@@ -14,11 +14,11 @@ def df(documents,word):
   return s
 def idf(documents,word):
   #-2 porque tem o corpus incluido
-  t = len(documents)-2
+  t = len(documents)
   d = df(documents,word)
   print(t)
   print(d)
-  return math.log10(t/d)
+  return math.log10((t/d))
 
 def matriz_idf(documents,list_word):
   m = []
@@ -37,11 +37,9 @@ def similaridade(matriz_idf,i):
         s += (matriz_idf[i][j] * matriz_idf[len(matriz_idf)-1][j])
     return s
 
-texto = ["Shipment of gold damaged in a fire", "Delivery of silver arrived in a silver truck","Shipment of gold arrived in a truck","gold silver truck"]
+texto = ["Shipment of gold damaged in a fire", "Delivery of silver arrived in a silver truck","Shipment of gold arrived in a truck"]
 
 corpus = sorted(arrayPalavras(texto))
-q = "gold silver truck"
-texto.append(q)
-m = matriz_idf(texto,corpus)
-print(corpus)
-print(m[2])
+#q = "gold silver truck"
+#texto.append(q)
+print(idf(texto,"truck"))
