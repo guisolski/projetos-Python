@@ -108,11 +108,11 @@ reposta = ["Parabéns você se encaixa no perfil de morados esse são os imoveis
            "Parabéns você se encaixa no perfil de um fundo imobiliario esse são os imoveis q recomendamos para você realizar a comprar: \nCasa de Madeira - Um quarto,"]
 
 #cria casos de validação
-morar = ["Eu gostaria de morar na casa não não", "Eu gostaria de morar na casa não sim", "Morar não não","Morar não sim" ]
-alugar = ["Eu gostaria de alugar a casa não não","Alugar não não","Alugar não sim"]
-investir = ["Eu gostaria de investir no imovel sim não","Eu gostaria de investir no imovel não não"]
-fundo_imobi = ["Eu gostaria de acionar ao meu portifolio de imoveis sim sim","Eu gostaria de acionar ao meu portifolio de imoveis sim não","Eu gostaria de acionar ao meu portifolio de imoveis tanto faz sim"]
-
+morar = ["Moradia não não","Moradia não sim","Para morar não não,"Para morar não sim","Eu gostaria de morar na casa não não", "Eu gostaria de morar na casa não sim", "Morar não não","Morar não sim" ]
+alugar = ["Para alugar não não","Para alugar não sim","Aluguel não não","Aluguel não sim", "Eu gostaria de alugar a casa não não","Eu gostaria de alugar a casa não sim","Alugar não não","Alugar não sim"]
+investir = ["Investimento sim não","Investimento não não,"Investir sim não","Investir não não","Para investir sim não","Para investir não não","Eu gostaria de investir no imovel sim não","Eu gostaria de investir no imovel não não"]
+fundo_imobi = ["Fundo imobiliario sim sim","Fundo imbiliario sim não","Eu gostaria de acionar ao meu portifolio de imoveis sim sim","Eu gostaria de acionar ao meu portifolio de imoveis sim não","Eu gostaria de acionar ao meu portifolio de imoveis tanto faz sim"]
+	
 #junta tos em um unico array, já normalizando, para depois poder criar o corpu
 validacoes = arrays_to_unicArray_normalized(stopwords,morar,alugar,investir,fundo_imobi)
 corpus = arraysWords_to_arrayWord(validacoes)
