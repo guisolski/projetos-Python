@@ -18,16 +18,16 @@ def Draw_map(m):
             if col < 3:
                 print("|",end="")
         print("")
-def CheckVictory(board, x, y):
+def CheckVictory(m, x, y):
     if x == None and y == None :
         return False 
-    if board[0][y] == board[1][y] == board [2][y]:
+    if m[0][y] == m[1][y] == m [2][y]:
         return True
-    elif board[x][0] == board[x][1] == board [x][2]:
+    elif m[x][0] == m[x][1] == m [x][2]:
         return True
-    elif x == y and board[0][0] == board[1][1] == board [2][2]:
+    elif x == y and m[0][0] == m[1][1] == m [2][2]:
         return True
-    elif x + y == 2 and board[0][2] == board[1][1] == board [2][0]:
+    elif x + y == 2 and m[0][2] == m[1][1] == m [2][0]:
         return True
     return False    
 def CheckDraw(m):
@@ -54,7 +54,7 @@ while Check(Matrix_map,line,col):
     except:
         stop()
     Matrix_map[line][col],value = (values[value] if Matrix_map[line][col] == None else Matrix_map[line][col]), (1 if value == 0 else  0 )
-    
+
     Draw_map(Matrix_map)
 
 print("Draw") if CheckDraw(Matrix_map) else print("Win ",values[1 if value == 0 else  0 ])
