@@ -30,7 +30,6 @@ while True:
     jump = False
     if msvcrt.kbhit():
            key = getKey()
-           print(key)
            if key == ' ':
                 jump = True
     clear()
