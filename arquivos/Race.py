@@ -2,9 +2,8 @@
 import os
 import msvcrt
 import time
-import sys
 from random import randint
-import threading
+
 
 def getKey():
     return str(msvcrt.getch()).replace("b","").replace("'","")
@@ -83,8 +82,6 @@ def draw_enmeys(list_of_enemys, track, clean):
             track[midle[0]][midle[1]] = "_____"
             track[back[0]][back[1]]   = "_____"
     return track
-def generet_enemys_time(list_of_enemys):
-    list_of_enemys = generet_enemys(list_of_enemys,min_max_enemy,pos_of_tracks)
 track= [['||','_____','|','_____','|','_____','||'],
         ['||','_____','|','_____','|','_____','||'],
         ['||','_____','|','_____','|','_____','||'],
@@ -119,8 +116,7 @@ while Loop:
 
     clear()
     draw_enmeys(list_of_enemys, track, True)
-    ##threading.Timer(2.0,generet_enemys_time(list_of_enemys)).start()
-    generet_enemys_time(list_of_enemys)
+    generet_enemys(list_of_enemys,min_max_enemy,pos_of_tracks)
     list_of_enemys,points = remove_enemy(list_of_enemys,points)
     list_of_enemys = move_enemy(list_of_enemys)
     colisson = collision(list_of_enemys, car)
